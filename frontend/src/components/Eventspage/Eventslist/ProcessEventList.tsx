@@ -36,11 +36,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const generateEvents = (props :any) => {
+  console.log(props)
   return props.events.map((event :any, index :number) => {
-      return <ProcessEvent 
+      return <ProcessEvent
         processName={event.name}
         status={event.status}
-        open={() => event.open(event.id)}
         id={event.id}
         key={event.id}
       />
@@ -49,11 +49,7 @@ const generateEvents = (props :any) => {
 
 const processEventList = (props :any) => {
   const classes = useStyles();
-
-  {generateEvents(props)}
-
   return (
-    <div>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -69,7 +65,6 @@ const processEventList = (props :any) => {
         </TableBody>
       </Table>
     </TableContainer>
-    </div>
     
   )
 }

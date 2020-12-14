@@ -6,6 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import EmailIcon from '@material-ui/icons/Email';
 import PeopleIcon from '@material-ui/icons/People';
 import ExploreIcon from '@material-ui/icons/Explore';
+import { ChangeHistoryRounded } from '@material-ui/icons';
 
 const useStyles = makeStyles({
   root: {
@@ -13,13 +14,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function actionsbar() {
+const actionsbar = (props :any) => {
   const classes = useStyles();
   const [value, setValue] = React.useState("explore");
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
+    console.log(newValue);
     setValue(newValue);
-    
+    props.changed(newValue)
   };
 
   return (
@@ -39,3 +41,5 @@ export default function actionsbar() {
     </Paper>
   );
 }
+
+export default actionsbar

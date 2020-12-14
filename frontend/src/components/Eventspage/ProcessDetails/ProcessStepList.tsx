@@ -1,73 +1,74 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItem from '@material-ui/core/ListItem';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import CloseIcon from '@material-ui/icons/Close';
+import Slide from '@material-ui/core/Slide';
+import { TransitionProps } from '@material-ui/core/transitions';
 
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import ProcessStep from './ProcessStep'
+import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';  
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      flexGrow: 1,
-      marginTop: "5%",
-      marginBottom: 12,
-      align: "center"
+    appBar: {
+      position: 'relative',
     },
-    textfieldButton: {
-      position: "relative",
-      top: "50%",
-      transform: "translateY(-50%)"
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
-    table: {
-      minWidth: 650,
+    title: {
+      marginLeft: theme.spacing(2),
+      flex: 1,
     },
   }),
 );
 
-const generateSteps = (props :any) => {
-  return props.steps.map((step :any, index :number) => {
-    return <ProcessStep 
-      timeStamp={step.timeStamp}
-      stepName={step.name}
-      status={step.status}
-      edit={() => step.edit(step.id)}
-      id={step.id}
-      key={step.id}
-    />
-  })
-}
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & { children?: React.ReactElement },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
-const processStepList = (props :any) => {
+export default function ProcessStepList() {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="left">Step Name</TableCell>
-            <TableCell align="left">Retries</TableCell>
-            <TableCell align="left">Actions</TableCell>
-            <TableCell align="left">Timestamp</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {generateSteps(props)}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    
-  )
+    <div>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        <OpenInBrowserIcon/>
+          Open Process
+      </Button>
+      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+        <AppBar className={classes.appBar}>
+          <Toolbar>
+            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+              <CloseIcon />
+            </IconButton>
+            <Typography variant="h6" className={classes.title}>
+              Process Detail View
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        
+        <List>
+          
+        </List>
+      </Dialog>
+    </div>
+  );
 }
-
-export default processStepList

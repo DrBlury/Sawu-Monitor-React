@@ -55,7 +55,7 @@ const searchbar = (props :any) => {
       <Card className={classes.root}>
         
         <CardContent>
-          <Grid container spacing={2}>
+          <Grid container spacing={1}>
             <Grid item xs={3}>
               <TextField 
                 select
@@ -65,6 +65,7 @@ const searchbar = (props :any) => {
                 onChange={handleChange}
                 helperText="Please select your search type"
                 variant="outlined"
+                fullWidth={true}
               >
                 {searchTypes.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -82,7 +83,6 @@ const searchbar = (props :any) => {
                     fullWidth={true}
                   />
                 </Grid>
-
                 
                 <Grid item xs={3}>
                   <Grid container spacing={2}>

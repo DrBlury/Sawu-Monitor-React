@@ -6,27 +6,35 @@ import ProcessEventList from '../components/Eventspage/Eventslist/ProcessEventLi
 
 class Eventspage extends Component {
   state = {
-    openDetailsDialog: false,
+    activeTab: "explore",
     events: [
-      {id: "0", name: "ProcessX", status: 22, open: this.openEvent},
-      {id: "1", name: "ProcessY", status: 44, open: this.openEvent},
-      {id: "2", name: "ProcessZ", status: 445, open: this.openEvent}
+      {id: "0", name: "ProcessX", status: 22},
+      {id: "1", name: "ProcessY", status: 44},
+      {id: "2", name: "ProcessZ", status: 445}
     ]
   }
 
-  openEvent(eventID: number): void {
-    console.log("Opening Event: " + eventID)
-    this.state.openDetailsDialog = true;
+  changeTab(tabName: string) {
+    this.setState({
+      activeTab: tabName
+    })
   }
 
-
-
   render() {
+    let activeTabContent;
+
+    if (this.state.activeTab === "explore") {
+      activeTabContent = <div><Searchbar/><ProcessEventList events={this.state.events}/></div>
+    } else if (this.state.activeTab === "usermanagment"){
+      activeTabContent = <div>This is the usermanagement tab</div>
+    } else if (this.state.activeTab === "deadletters"){
+      activeTabContent = <div>This is the deadletters tab</div>
+    }
+
     return (
       <div className="Eventspage">
-        <Actionsbar/>
-        <Searchbar/>
-        <ProcessEventList events={this.state.events}/>
+        <Actionsbar changed={this.changeTab.bind(this)}/>
+        {activeTabContent}
       </div>
     );
   }
