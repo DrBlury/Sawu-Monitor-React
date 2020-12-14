@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import MenuItem from '@material-ui/core/MenuItem';
 import SearchIcon from "@material-ui/icons/Search";
 import Cached from "@material-ui/icons/Cached";
-import IconButton from "@material-ui/core/IconButton";
+import StylizedMenu from "./StylizedMenu"
 
 const searchTypes = [
   {
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
-      marginTop: "5%",
+      marginTop: "1%",
       marginBottom: 12,
       align: "left"
     },
@@ -53,6 +53,7 @@ const searchbar = (props :any) => {
 
   return (
       <Card className={classes.root}>
+        
         <CardContent>
           <Grid container spacing={2}>
             <Grid item xs={3}>

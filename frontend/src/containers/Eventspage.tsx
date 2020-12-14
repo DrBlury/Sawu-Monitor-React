@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Searchbar from '../components/Eventspage/Searchbar/Searchbar'
+import Actionsbar from '../components/Actionsbar/Actionsbar'
 import ProcessEventList from '../components/Eventspage/Eventslist/ProcessEventList'
 
 class Eventspage extends Component {
@@ -23,7 +24,7 @@ class Eventspage extends Component {
   render() {
     return (
       <div className="Eventspage">
-        <h1>Sawu Monitor</h1>
+        <Actionsbar/>
         <Searchbar/>
         <ProcessEventList events={this.state.events}/>
       </div>
