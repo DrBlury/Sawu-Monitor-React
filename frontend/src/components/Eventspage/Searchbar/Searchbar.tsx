@@ -6,10 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import CardContent from '@material-ui/core/CardContent';
 import MenuItem from '@material-ui/core/MenuItem';
 import SearchIcon from "@material-ui/icons/Search";
+import Cached from "@material-ui/icons/Cached";
 import IconButton from "@material-ui/core/IconButton";
-
-import InputAdornment from "@material-ui/core/InputAdornment";
-
 
 const searchTypes = [
   {
@@ -28,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       marginTop: "5%",
       marginBottom: 12,
-      align: "center"
+      align: "left"
     },
     textfieldButton: {
       position: "relative",
@@ -45,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const searchbar = (props :any) => {
   const [searchTerm, setSearchTerm] = React.useState('SearchTerm');
-  const [searchType, setSearchType] = React.useState('SearchType');
+  const [searchType, setSearchType] = React.useState('value');
 
   const classes = useStyles();
 
@@ -56,11 +54,11 @@ const searchbar = (props :any) => {
   return (
       <Card className={classes.root}>
         <CardContent>
-          <Grid container spacing={1}>
+          <Grid container spacing={2}>
             <Grid item xs={3}>
               <TextField 
                 select
-                value={searchTypes}
+                value={searchType}
                 id="standard-select-searchtypes" 
                 label="Search type" 
                 onChange={handleChange}
@@ -68,26 +66,49 @@ const searchbar = (props :any) => {
                 variant="outlined"
               >
                 {searchTypes.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
               </TextField>
             </Grid>
-            <Grid item xs={2}>
-              <TextField 
-                id="standard-basic" 
-                label="Search term"
-              />
-            </Grid>
+            
             <Grid item xs>
-                <Button 
-                  className={classes.textfieldButton} 
-                  variant="contained" 
-                  color="primary">
-                  <SearchIcon/>Search
-                </Button>
+              <Grid container spacing={2}>
+                <Grid item xs>
+                  <TextField 
+                    label="Search term"
+                    fullWidth={true}
+                  />
+                </Grid>
+
+                
+                <Grid item xs={3}>
+                  <Grid container spacing={2}>
+                    <Grid item xs>
+                      <Button 
+                        className={classes.textfieldButton} 
+                        variant="contained" 
+                        color="primary">
+                        Search
+                        <SearchIcon/>
+                      </Button>
+                    </Grid>
+                    
+                    <Grid item xs>
+                      <Button 
+                        className={classes.textfieldButton} 
+                        variant="contained" 
+                        color="default">
+                        Reload Events
+                        <Cached/>
+                      </Button>
+                    </Grid>
+                    
+                  </Grid>
+                </Grid>
+
+              </Grid>
             </Grid>
           </Grid>
         </CardContent>
