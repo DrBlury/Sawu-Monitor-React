@@ -19,7 +19,6 @@ const actionsbar = (props :any) => {
   const [value, setValue] = React.useState("explore");
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
-    console.log(newValue);
     setValue(newValue);
     props.changed(newValue)
   };

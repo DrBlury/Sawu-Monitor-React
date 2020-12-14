@@ -8,9 +8,9 @@ class Eventspage extends Component {
   state = {
     activeTab: "explore",
     events: [
-      {id: "0", name: "ProcessX", status: 22},
-      {id: "1", name: "ProcessY", status: 44},
-      {id: "2", name: "ProcessZ", status: 445}
+      {id: "550e8400-e29b-11d4-a716-446655440000", name: "ProcessX", status: 22},
+      {id: "550e8400-e29b-11d4-a716-446655440001", name: "ProcessY", status: 44},
+      {id: "550e8400-e29b-11d4-a716-446655440002", name: "ProcessZ", status: 445}
     ]
   }
 

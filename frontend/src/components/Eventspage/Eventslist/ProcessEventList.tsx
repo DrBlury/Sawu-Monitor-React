@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const generateEvents = (props :any) => {
-  console.log(props)
   return props.events.map((event :any, index :number) => {
       return <ProcessEvent
         processName={event.name}
@@ -54,7 +53,7 @@ const processEventList = (props :any) => {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>InstanceID</TableCell>
+            <TableCell align="left">InstanceID</TableCell>
             <TableCell align="left">Name</TableCell>
             <TableCell align="left">Status</TableCell>
             <TableCell align="left">Open</TableCell>

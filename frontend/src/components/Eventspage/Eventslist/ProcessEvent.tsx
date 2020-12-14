@@ -7,14 +7,10 @@ import ProcessStepList from '../ProcessDetails/ProcessStepList'
 const processEvent = (props :any) => {
   return (
     <TableRow key={props.id}>
-      <TableCell component="th" scope="row">
-        {props.id}
-      </TableCell>
+      <TableCell align="left">{props.id}</TableCell>
       <TableCell align="left">{props.processName}</TableCell>
       <TableCell align="left">{props.status}</TableCell>
-      <TableCell align="left">
-        <ProcessStepList/>
-      </TableCell>
+      <TableCell align="left"><ProcessStepList/></TableCell>
     </TableRow>
   );
 }
