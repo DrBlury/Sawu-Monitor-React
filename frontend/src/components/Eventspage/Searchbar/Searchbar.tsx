@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import MenuItem from '@material-ui/core/MenuItem';
 import SearchIcon from "@material-ui/icons/Search";
 import Cached from "@material-ui/icons/Cached";
+import apiService from '../../../util/ApiService';
 
 const searchTypes = [
   {
@@ -39,9 +40,16 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-function search() {
+const search = async () => {
   // Call the API
   // Update the state with the response
+  console.log("Start...");
+  try {
+    const reponse = await apiService.client.get("/123");
+    console.log({status: reponse.status});
+  } catch (err) {
+    console.error("Error is:", err);
+  }
 }
 
 const searchbar = (props :any) => {
