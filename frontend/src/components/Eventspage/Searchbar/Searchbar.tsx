@@ -7,7 +7,6 @@ import CardContent from '@material-ui/core/CardContent';
 import MenuItem from '@material-ui/core/MenuItem';
 import SearchIcon from "@material-ui/icons/Search";
 import Cached from "@material-ui/icons/Cached";
-import StylizedMenu from "./StylizedMenu"
 
 const searchTypes = [
   {
@@ -40,9 +39,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+function search() {
+  // Call the API
+  // Update the state with the response
+}
 
 const searchbar = (props :any) => {
-  const [searchTerm, setSearchTerm] = React.useState('SearchTerm');
   const [searchType, setSearchType] = React.useState('value');
 
   const classes = useStyles();
@@ -90,7 +92,8 @@ const searchbar = (props :any) => {
                       <Button 
                         className={classes.textfieldButton} 
                         variant="contained" 
-                        color="primary">
+                        color="primary"
+                        onClick={search}>
                         Search
                         <SearchIcon/>
                       </Button>
